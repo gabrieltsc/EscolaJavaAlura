@@ -20,7 +20,7 @@ public class RepositoriosDeAlunosEmMemoria implements RepositorioDeAlunos {
     @Override
     public Aluno buscarPorCPF(CPF cpf) {
         return this.matriculados.stream()
-                .filter(aluno -> aluno.getCpf().equals(cpf.getNumero()))
+                .filter(aluno -> aluno.getCpfEscrito().equals(cpf.getNumero()))
                 .findFirst()
                 .orElseThrow(() -> new AlunoNaoEncontrado(cpf));
     }

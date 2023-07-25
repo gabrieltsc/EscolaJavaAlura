@@ -3,6 +3,7 @@ package br.com.alura.escola.dominio.aluno;
 import java.util.ArrayList;
 import java.util.List;
 
+// Agregate Root
 public class Aluno {
 
     // Entidade
@@ -18,12 +19,21 @@ public class Aluno {
         this.email = email;
     }
 
+    // A manipulação de telefones deve ser feita de dentro do Aluno (Agregate)
     public void adicionarTelefone(String ddd, String numero) {
+        // Business Invariant
+        if (telefones.size() == 2){
+            throw new IllegalArgumentException("Número máximo de telefones atingido!");
+        }
         this.telefones.add(new Telefone(ddd, numero));
     }
 
-    public String getCpf() {
+    public String getCpfEscrito() {
         return cpf.getNumero();
+    }
+
+    public CPF getCpf() {
+        return cpf;
     }
 
     public String getNome() {
